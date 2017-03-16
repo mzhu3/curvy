@@ -10,7 +10,24 @@
   to generate the coefiecients for a bezier curve
   ====================*/
 struct matrix * make_bezier() {
-    return NULL;
+  struct matrix *temp = new_matrix(4,4);
+  temp->m[0][0] = -1;
+  temp->m[0][1] = 3;
+  temp->m[0][2] = -3;
+  temp->m[0][3] = 1;
+  temp->m[1][0] = -3;
+  temp->m[1][1] = -6;
+  temp->m[1][2] = 3;
+  temp->m[1][3] = 0;
+  temp->m[2][0] = -3;
+  temp->m[2][1] = 3;
+  temp->m[2][2] = 0;
+  temp->m[2][3] = 0;
+  temp->m[3][0] = 1;
+  temp->m[3][1] = 0;
+  temp->m[3][2] = 0;
+  temp->m[3][3] = 0;
+  return temp;
 }
 
 /*======== struct matrix * make_hermite() ==========
@@ -21,6 +38,23 @@ struct matrix * make_bezier() {
   the coefiecients for a hermite curve
   ====================*/
 struct matrix * make_hermite() {
+  struct matrix *temp = new matrix(4,4);
+  temp->m[0][0] = -1;
+  temp->m[0][1] = 3;
+  temp->m[0][2] = -3;
+  temp->m[0][3] = 1;
+  temp->m[1][0] = -3;
+  temp->m[1][1] = -6;
+  temp->m[1][2] = 3;
+  temp->m[1][3] = 0;
+  temp->m[2][0] = -3;
+  temp->m[2][1] = 3;
+  temp->m[2][2] = 0;
+  temp->m[2][3] = 0;
+  temp->m[3][0] = 1;
+  temp->m[3][1] = 0;
+  temp->m[3][2] = 0;
+  temp->m[3][3] = 0;
   return NULL;
 }
 
