@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "ml6.h"
 #include "display.h"
@@ -12,15 +13,26 @@
 	    double cy
 	    double r
 	    double step  
-  Returns: 
+	    Returns: 
 
-  Adds the circle at (cx, cy) with radius r to points
-  ====================*/
+	    Adds the circle at (cx, cy) with radius r to points
+	    ====================*/
 void add_circle( struct matrix * points, 
 		 double cx, double cy, double cz,
 		 double r, double step ) {
+  double sCounter,sTemp,x0,y0,x1,y1;
+  sCounter = 1/step;
+  sTemp = sCounter;
+  x0=r+cx;
+  y0=cy;
+  for(sTemp; sTemp < 1.001;sTemp+=sCounter){
+    x1 = r*cos((2*M_PI)*sTemp)+cx;
+    y1 = r*sin((2*M_PI)*sTemp)+cy;
+    add_edge(points,x0,y0,cz,x1,y1,cz);
+    x0=x1;
+    y0=y1;
+  }
 }
-
 /*======== void add_curve() ==========
 Inputs:   struct matrix *points
          double x0
@@ -33,18 +45,35 @@ Inputs:   struct matrix *points
          double y3
          double step
          int type  
-Returns: 
+	 Returns: 
 
-Adds the curve bounded by the 4 points passsed as parameters
-of type specified in type (see matrix.h for curve type constants)
-to the matrix points
-====================*/
+	 Adds the curve bounded by the 4 points passsed as parameters
+	 of type specified in type (see matrix.h for curve type constants)
+	 to the matrix points
+	 ====================*/
 void add_curve( struct matrix *points, 
 		double x0, double y0, 
 		double x1, double y1, 
 		double x2, double y2, 
 		double x3, double y3, 
 		double step, int type ) {
+  double sTemp,sCounter,xa,ya;
+  sCounter = 1/step;
+  sTemp = sCounter;
+  struct matrix *temp = new_matrix(4,1);
+  struct matrix *temp1 = new_matrix(4,1);
+  temp = generate_curve_coefs(x0,x1,x2,x3,type);
+  temp1 = generate_curve_coefs(y0,y1,y2,y3,type);
+  for(sTemp;sTemp<1.001;sTemp+=sCounter){
+    xa = (temp->m[0][0]*pow(sTemp,3)) + (temp->m[1][0]*pow(sTemp,2))+(temp->m[2][0]*sTemp) + temp->m[3][0];
+    ya = (temp1->m[0][0]*pow(sTemp,3)) + (temp1->m[1][0]*pow(sTemp,2))+(temp1->m[2][0]*sTemp) + temp1->m[3][0];
+    add_edge(points,x0,y0,0,xa,ya,0);
+    x0 = xa;
+    y0 = ya;
+
+
+								     
+  }
 }
 
 
