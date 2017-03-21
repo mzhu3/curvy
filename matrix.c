@@ -15,7 +15,7 @@ struct matrix * make_bezier() {
   temp->m[0][1] = 3;
   temp->m[0][2] = -3;
   temp->m[0][3] = 1;
-  temp->m[1][0] = -3;
+  temp->m[1][0] = 3;
   temp->m[1][1] = -6;
   temp->m[1][2] = 3;
   temp->m[1][3] = 0;
