@@ -69,10 +69,7 @@ void add_curve( struct matrix *points,
     ya = (temp1->m[0][0]*pow(sTemp,3)) + (temp1->m[1][0]*pow(sTemp,2))+(temp1->m[2][0]*sTemp) + temp1->m[3][0];
     add_edge(points,x0,y0,0,xa,ya,0);
     x0 = xa;
-    y0 = ya;
-
-
-								     
+    y0 = ya;								     
   }
 }
 

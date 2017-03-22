@@ -46,7 +46,7 @@ struct matrix * make_hermite() {
   temp->m[1][0] = -3;
   temp->m[1][1] = 3;
   temp->m[1][2] = -2;
-  temp->m[1][3] = 1;
+  temp->m[1][3] = -1;
   temp->m[2][0] = 0;
   temp->m[2][1] = 0;
   temp->m[2][2] = 1;
